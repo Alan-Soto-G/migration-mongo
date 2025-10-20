@@ -1,0 +1,599 @@
+{
+  "descripcion": "Configuración de Vector Search Indexes para MongoDB Atlas",
+  "fecha": "2025-10-20",
+  "instrucciones": "En MongoDB Atlas UI: Database > Atlas Search > CREATE SEARCH INDEX > JSON Editor > Atlas Vector Search > Pega el JSON",
+  "nota": "Los campos 'embedding' asumen que tienes vectores generados (ej: OpenAI embeddings de 1536 dimensiones)",
+
+  "vector_search_indices": {
+
+    "cliente": {
+      "index_name": "vector_search_cliente",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          },
+          {
+            "type": "filter",
+            "path": "nacionalidad"
+          }
+        ]
+      }
+    },
+
+    "hotel": {
+      "index_name": "vector_search_hotel",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "municipioId"
+          },
+          {
+            "type": "filter",
+            "path": "categoria"
+          }
+        ]
+      }
+    },
+
+    "habitacion": {
+      "index_name": "vector_search_habitacion",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idHotel"
+          },
+          {
+            "type": "filter",
+            "path": "tipo"
+          },
+          {
+            "type": "filter",
+            "path": "disponibilidad"
+          }
+        ]
+      }
+    },
+
+    "viaje": {
+      "index_name": "vector_search_viaje",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          },
+          {
+            "type": "filter",
+            "path": "fechaInicio"
+          }
+        ]
+      }
+    },
+
+    "reserva": {
+      "index_name": "vector_search_reserva",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idViaje"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "clienteViaje": {
+      "index_name": "vector_search_clienteViaje",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idCliente"
+          },
+          {
+            "type": "filter",
+            "path": "idViaje"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "factura": {
+      "index_name": "vector_search_factura",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          },
+          {
+            "type": "filter",
+            "path": "metodoPago"
+          }
+        ]
+      }
+    },
+
+    "cuota": {
+      "index_name": "vector_search_cuota",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idFactura"
+          },
+          {
+            "type": "filter",
+            "path": "idViaje"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "tarjetabancaria": {
+      "index_name": "vector_search_tarjetabancaria",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idCliente"
+          },
+          {
+            "type": "filter",
+            "path": "tipo"
+          }
+        ]
+      }
+    },
+
+    "actividadturistica": {
+      "index_name": "vector_search_actividadturistica",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idMunicipio"
+          },
+          {
+            "type": "filter",
+            "path": "costo"
+          }
+        ]
+      }
+    },
+
+    "municipio": {
+      "index_name": "vector_search_municipio",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "pais"
+          },
+          {
+            "type": "filter",
+            "path": "departamento"
+          }
+        ]
+      }
+    },
+
+    "guia": {
+      "index_name": "vector_search_guia",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          },
+          {
+            "type": "filter",
+            "path": "especialidad"
+          },
+          {
+            "type": "filter",
+            "path": "idioma"
+          }
+        ]
+      }
+    },
+
+    "guiaActividad": {
+      "index_name": "vector_search_guiaActividad",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idGuia"
+          },
+          {
+            "type": "filter",
+            "path": "idActividad"
+          }
+        ]
+      }
+    },
+
+    "plan": {
+      "index_name": "vector_search_plan",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "tipo"
+          },
+          {
+            "type": "filter",
+            "path": "precioTotal"
+          }
+        ]
+      }
+    },
+
+    "planActividad": {
+      "index_name": "vector_search_planActividad",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idPlan"
+          },
+          {
+            "type": "filter",
+            "path": "idActividad"
+          }
+        ]
+      }
+    },
+
+    "viajePlan": {
+      "index_name": "vector_search_viajePlan",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idViaje"
+          },
+          {
+            "type": "filter",
+            "path": "idPlan"
+          }
+        ]
+      }
+    },
+
+    "vehiculo": {
+      "index_name": "vector_search_vehiculo",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "tipo"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "carro": {
+      "index_name": "vector_search_carro",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "aeronave": {
+      "index_name": "vector_search_aeronave",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "tipo"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "aeronave_aerolinea": {
+      "index_name": "vector_search_aeronave_aerolinea",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idAeronave"
+          },
+          {
+            "type": "filter",
+            "path": "nombreAerolinea"
+          }
+        ]
+      }
+    },
+
+    "trayecto": {
+      "index_name": "vector_search_trayecto",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "origen"
+          },
+          {
+            "type": "filter",
+            "path": "destino"
+          },
+          {
+            "type": "filter",
+            "path": "tipoTransporte"
+          }
+        ]
+      }
+    },
+
+    "serviciotransporte": {
+      "index_name": "vector_search_serviciotransporte",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idTrayecto"
+          },
+          {
+            "type": "filter",
+            "path": "idVehiculo"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    },
+
+    "itinerariotransporte": {
+      "index_name": "vector_search_itinerariotransporte",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "idViaje"
+          },
+          {
+            "type": "filter",
+            "path": "idServicio"
+          },
+          {
+            "type": "filter",
+            "path": "idTrayecto"
+          }
+        ]
+      }
+    },
+
+    "administrador": {
+      "index_name": "vector_search_administrador",
+      "json": {
+        "fields": [
+          {
+            "type": "vector",
+            "path": "embedding",
+            "numDimensions": 1536,
+            "similarity": "cosine"
+          },
+          {
+            "type": "filter",
+            "path": "estado"
+          }
+        ]
+      }
+    }
+  },
+
+  "instrucciones_detalladas": {
+    "paso_1": "Ve a MongoDB Atlas: https://cloud.mongodb.com",
+    "paso_2": "Selecciona tu cluster > Database > pestaña 'Atlas Search'",
+    "paso_3": "Click en 'CREATE SEARCH INDEX'",
+    "paso_4": "Selecciona 'Atlas Vector Search - JSON Editor'",
+    "paso_5": "Selecciona tu base de datos y la colección correspondiente",
+    "paso_6": "Copia el JSON completo del campo 'json' de cada entidad",
+    "paso_7": "Pega en el editor JSON",
+    "paso_8": "Usa el 'index_name' sugerido o personaliza",
+    "paso_9": "Click 'Create Search Index'",
+    "paso_10": "Espera a que el índice se construya (status: Active)"
+  },
+
+  "notas_importantes": {
+    "dimensiones": "Los vectores están configurados para 1536 dimensiones (OpenAI text-embedding-ada-002). Ajusta 'numDimensions' según tu modelo de embeddings.",
+    "similarity": "Usa 'cosine' para similitud semántica. Otras opciones: 'euclidean', 'dotProduct'",
+    "filtros": "Los campos 'filter' permiten pre-filtrar resultados antes de la búsqueda vectorial",
+    "campo_embedding": "Debes agregar un campo 'embedding' (array de números) a tus documentos antes de usar Vector Search",
+    "generacion_embeddings": "Usa OpenAI API, Hugging Face, o Cohere para generar embeddings de campos de texto (nombre, descripcion, etc.)"
+  },
+
+  "ejemplo_documento_con_embedding": {
+    "coleccion": "hotel",
+    "documento_ejemplo": {
+      "_id": "ObjectId(...)",
+      "idHotel": 1,
+      "nombre": "Hotel Paradise",
+      "direccion": "Calle 100 #15-20",
+      "categoria": 5,
+      "municipioId": 10,
+      "embedding": [
+        0.023, -0.015, 0.042, "...(1533 valores más)...", 0.018
+      ]
+    }
+  },
+
+  "query_ejemplo": {
+    "descripcion": "Ejemplo de consulta Vector Search en Node.js",
+    "codigo": "const results = await db.collection('hotel').aggregate([{ $vectorSearch: { index: 'vector_search_hotel', path: 'embedding', queryVector: userQueryEmbedding, numCandidates: 100, limit: 10, filter: { categoria: { $gte: 4 } } } }]).toArray();"
+  }
+}
+
